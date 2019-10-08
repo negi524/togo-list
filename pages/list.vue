@@ -4,7 +4,7 @@
     <ul>
       <li v-for="togo in togos">
         <input type="checkbox" :checked="togos.done" @change="toggle(togo)" />
-        <span>{{ togo.text }}</span>
+        <span>{{ togo.name }}</span>
       </li>
     </ul>
     <input placeholder="リストを追加" @keyup.enter="addTogo" />

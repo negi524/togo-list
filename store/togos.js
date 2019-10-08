@@ -3,10 +3,16 @@ export const state = () => ({
 });
 
 export const mutations = {
-  add(state, text) {
+  add(state, name) {
     state.list.push({
-      text: text,
-      done: false
+      name: name,
+      done: false,
+      area: "",
+      prefectures: "",
+      time: "evening",
+      url: "",
+      created: "",
+      season: "summer"
     });
   },
   remove(state, { togo }) {
