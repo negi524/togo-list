@@ -3,7 +3,7 @@
     <h1>list</h1>
     <ul>
       <li v-for="togo in togos">
-        <input type="checkbox" @change="toggle(togo)" />
+        <input type="checkbox" :checked="togos.done" @change="toggle(togo)" />
         <span>{{ togo.text }}</span>
       </li>
     </ul>
@@ -24,7 +24,10 @@ export default {
     addTogo(e) {
       this.$store.commit("togos/add", e.target.value);
       e.target.value = "";
-    }
+    },
+    ...mapMutations({
+      toggle: "togos/toggle"
+    })
   }
 };
 </script>
