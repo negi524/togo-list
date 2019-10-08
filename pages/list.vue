@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p>list</p>
+  <div id="list">
+    <h1>list</h1>
     <ul>
       <li v-for="togo in togos">
         <input type="checkbox" @change="toggle(togo)" />
@@ -28,3 +28,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  margin-bottom: 20px;
+}
+</style>
