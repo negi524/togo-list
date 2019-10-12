@@ -6,9 +6,6 @@ const app = express();
 // api.js を読み込み
 const apiRouter = require("./api");
 
-// database を読み込み
-const db = require("./database");
-
 // Import and Set Nuxt.js options
 const config = require("../nuxt.config.js");
 config.dev = process.env.NODE_ENV !== "production";
