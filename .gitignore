@@ -89,3 +89,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# DB data
+db/*
+!db/.gitkeep
