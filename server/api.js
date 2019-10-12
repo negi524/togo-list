@@ -20,12 +20,30 @@ const BookShelf = require("bookshelf")(knex);
 
 // usersテーブルにアクセスするためのMyDataオブジェクト
 const MyData = BookShelf.Model.extend({ tableName: "users" });
+const Togo = BookShelf.Model.extend({ tableName: "togo" });
 
 /**
  * user情報を取得するエンドポイント
  */
 router.get("/users", (req, res, next) => {
   new MyData()
+    .fetchAll()
+    .then(collection => {
+      res.send(collection);
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: true,
+        data: { message: err.message }
+      });
+    });
+});
+
+/**
+ * 行きたいところリストを取得するエンドポイント
+ */
+router.get("/togo", (req, res, next) => {
+  new Togo()
     .fetchAll()
     .then(collection => {
       res.send(collection);

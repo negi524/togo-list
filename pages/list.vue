@@ -3,11 +3,13 @@
     <h1>list</h1>
     <ul>
       <li v-for="togo in togos">
-        <input type="checkbox" :checked="togos.done" @change="toggle(togo)" />
-        <span>{{ togo.name }}</span>
+        <!-- <input type="checkbox" :checked="togos.done" @change="toggle(togo)" /> -->
+        <span>{{ togo.pid }}</span>
+        <span>{{ togo.about }}</span>
+        <span>{{ togo.created }}</span>
       </li>
     </ul>
-    <input placeholder="リストを追加" @keyup.enter="addTogo" />
+    <!-- <input placeholder="リストを追加" @keyup.enter="addTogo" /> -->
   </div>
 </template>
 
@@ -15,6 +17,9 @@
 import { mapMutations } from "vuex";
 
 export default {
+  async created() {
+    this.$store.dispatch("togos/fetchTogo");
+  },
   computed: {
     togos: function() {
       return this.$store.state.togos.list;
