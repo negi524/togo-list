@@ -1,9 +1,6 @@
 const express = require("express");
 const router = express.Router();
 // const database = require("./database");  // database.jsモジュールを読み込む
-// SQLite3を利用する設定
-const sqlite3 = require("sqlite3");
-const db = new sqlite3.Database("./db/mydb.sqlite3");
 
 // knexの設定
 const knex = require("knex")({
