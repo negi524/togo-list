@@ -59,9 +59,9 @@ router.get("/togo", (req, res, next) => {
 router.post("/togo/add", (req, res, next) => {
   console.log("post access.");
   console.dir(req.body);
-  const param = { post: "success" };
+  const param = { post: req.body["message"] };
   res.header("Content-Type", "application/json");
-  res.send(param);
+  res.json(param);
 });
 
 /**
