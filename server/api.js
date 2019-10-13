@@ -29,7 +29,7 @@ router.get("/users", (req, res, next) => {
   new MyData()
     .fetchAll()
     .then(collection => {
-      res.send(collection);
+      res.json(collection);
     })
     .catch(err => {
       res.status(500).json({
@@ -46,7 +46,7 @@ router.get("/togo", (req, res, next) => {
   new Togo()
     .fetchAll()
     .then(collection => {
-      res.send(collection);
+      res.json(collection);
     })
     .catch(err => {
       res.status(500).json({
