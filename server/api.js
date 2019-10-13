@@ -57,6 +57,17 @@ router.get("/togo", (req, res, next) => {
 });
 
 /**
+ * 行きたいところリストを追加するエンドポイント
+ */
+router.post("/togo/add", (req, res, next) => {
+  console.log("post access.");
+  console.dir(req.body);
+  const param = { post: "success" };
+  res.header("Content-Type", "application/json");
+  res.send(param);
+});
+
+/**
  * 固定のJSONを返却するエンドポイント
  */
 router.get("/test", (req, res, next) => {

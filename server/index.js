@@ -11,6 +11,10 @@ const config = require("../nuxt.config.js");
 config.dev = process.env.NODE_ENV !== "production";
 
 async function start() {
+  // リクエストボディを利用するための設定
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+
   // apiのルーティングを行う
   app.use("/api", apiRouter);
 
