@@ -1,13 +1,15 @@
 <template>
   <div>
     <h2>This is form page.</h2>
-    <!-- <form method="post" action="/api/togo/add">
-      <input type="text" name="message" />
-      <input type="submit" value="送信" />
-    </form>-->
-    <v-form ref="form" v-model="valid" lazy-validation>
-      <v-text-field label="Name" v-model="name" :counter="10" :rules="nameRules" required></v-text-field>
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">send data</v-btn>
+    <v-form ref="form">
+      <v-text-field
+        label="Place Name"
+        v-model="placeName"
+        :counter="20"
+        :rules="nameRules"
+        required
+      ></v-text-field>
+      <v-btn class="mr-4" @click="postForm">new form button</v-btn>
     </v-form>
   </div>
 </template>
@@ -17,10 +19,10 @@ export default {
   data: function() {
     return {
       valid: true,
-      name: "",
+      placeName: "",
       nameRules: [
-        v => !!v || "Name is required.",
-        v => (v && v.length <= 10) || "Name must be less than 10 characters."
+        v => !!v || "Place Name is required.",
+        v => (v && v.length <= 20) || "Name must be less than 20 characters."
       ]
     };
   },
@@ -29,6 +31,13 @@ export default {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
       }
+    },
+    async postForm() {
+      const param = {
+        about: this.placeName
+      };
+      const response = await this.$axios.$post("/api/togo/add", param);
+      console.log(response);
     }
   }
 };

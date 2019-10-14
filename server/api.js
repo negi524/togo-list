@@ -55,11 +55,12 @@ router.get("/togo", (req, res, next) => {
 
 /**
  * 行きたいところリストを追加するエンドポイント
+ * @param about: 行きたいところの名前
  */
 router.post("/togo/add", (req, res, next) => {
-  console.log("post access.");
+  console.log("requested content.");
   console.dir(req.body);
-  const param = { post: req.body["message"] };
+  const param = { post: req.body["about"] };
   res.header("Content-Type", "application/json");
   res.json(param);
 });
