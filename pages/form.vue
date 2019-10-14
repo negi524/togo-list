@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>This is form page.</h2>
-    <v-form ref="form">
+    <v-form class="form" ref="form">
       <v-text-field
         label="Place Name"
         v-model="placeName"
@@ -32,6 +32,9 @@ export default {
         this.snackbar = true;
       }
     },
+    /**
+     * formに入力された値をAPIにpostする
+     */
     async postForm() {
       const param = {
         about: this.placeName
@@ -42,3 +45,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.form {
+  width: 500px;
+}
+</style>
