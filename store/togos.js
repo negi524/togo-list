@@ -26,7 +26,6 @@ export const actions = {
     const response = await this.$axios.get(url);
     if (response.status == 200) {
       const { data } = response;
-      console.table(data);
       ctx.commit("set", data);
     } else {
       console.error("request error!");

@@ -56,11 +56,9 @@ router.get("/togo", (req, res, next) => {
 
 /**
  * 行きたいところリストを追加するエンドポイント
- * @param naem
+ * @param name
  */
 router.post("/togo/add", (req, res, next) => {
-  console.log("requested content.");
-  // console.dir(req.body);
   // 現在日時を計算
   const today = new Date();
   const YYYY = today.getFullYear();
