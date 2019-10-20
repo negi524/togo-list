@@ -17,7 +17,7 @@ const BookShelf = require("bookshelf")(knex);
 
 // usersテーブルにアクセスするためのMyDataオブジェクト
 const MyData = BookShelf.Model.extend({ tableName: "users" });
-const Togo = BookShelf.Model.extend({ tableName: "togo" });
+const Togo = BookShelf.Model.extend({ tableName: "togo", idAttribute: "pid" });
 
 /**
  * user情報を取得するエンドポイント
@@ -48,21 +48,44 @@ router.get("/togo", (req, res, next) => {
     .catch(err => {
       res.status(500).json({
         error: true,
-        data: { message: err.message }
+        message: "DBの取得に失敗しました",
+        detail: { message: err.message }
       });
     });
 });
 
 /**
  * 行きたいところリストを追加するエンドポイント
- * @param about: 行きたいところの名前
+ * @param naem
  */
 router.post("/togo/add", (req, res, next) => {
   console.log("requested content.");
-  console.dir(req.body);
-  const param = { post: req.body["about"] };
-  res.header("Content-Type", "application/json");
-  res.json(param);
+  // console.dir(req.body);
+  // 現在日時を計算
+  const today = new Date();
+  const YYYY = today.getFullYear();
+  const MM = ("0" + (today.getMonth() + 1)).slice(-2);
+  const DD = ("0" + today.getDate()).slice(-2);
+
+  const addData = {
+    about: req.body["name"],
+    created: YYYY + MM + DD,
+    updated: YYYY + MM + DD
+  };
+
+  new Togo(addData)
+    .save()
+    .then(model => {
+      // 追加したデータを返却
+      res.json(model.attributes);
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: true,
+        message: "DBへの追加に失敗しました",
+        detail: { message: err.message }
+      });
+    });
 });
 
 /**
