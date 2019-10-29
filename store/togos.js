@@ -28,7 +28,20 @@ export const actions = {
       const { data } = response;
       ctx.commit("set", data);
     } else {
-      console.error("request error!");
+      console.error("get request error!");
+    }
+  },
+  async addTogo(ctx) {
+    const url = "/api/togo/add";
+    const param = {
+      name: "hoge"
+    };
+    const response = await this.$axios.post(url, param);
+    if (response.status == 200) {
+      const { data } = response;
+      ctx.commit("set", data);
+    } else {
+      console.error("post request error!");
     }
   }
 };

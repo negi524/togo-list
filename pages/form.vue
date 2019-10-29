@@ -39,7 +39,7 @@ export default {
       const param = {
         name: this.placeName
       };
-      const response = await this.$axios.$post("/api/togo/add", param);
+      const response = await this.$axios.post("/api/togo/add", param);
     }
   }
 };

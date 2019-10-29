@@ -40,6 +40,7 @@ router.get("/users", (req, res, next) => {
  * 行きたいところリストを取得するエンドポイント
  */
 router.get("/togo", (req, res, next) => {
+  console.log(req.headers);
   new Togo()
     .fetchAll()
     .then(collection => {
