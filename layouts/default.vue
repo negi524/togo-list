@@ -56,9 +56,6 @@ html {
   color: #fff;
   background-color: #35495e;
 }
-.title {
-  padding: 30px;
-}
 .el-icon-folder-opened {
   margin-right: 10px;
 }

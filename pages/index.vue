@@ -36,15 +36,16 @@ export default {
   font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
+  padding: 30px;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 75px;
   color: #35495e;
   letter-spacing: 1px;
 }
 
 .subtitle {
-  font-weight: 300;
-  font-size: 42px;
+  font-weight: 200;
+  font-size: 35px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
