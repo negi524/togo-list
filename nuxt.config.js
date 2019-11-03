@@ -1,3 +1,5 @@
+require("dotenv").config(); // envファイルを利用するための設定
+
 module.exports = {
   mode: "universal",
   /*
