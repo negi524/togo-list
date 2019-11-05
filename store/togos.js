@@ -22,7 +22,7 @@ export const actions = {
    * @param {Object} ctx コンテキストオブジェクト
    */
   async fetchTogo(ctx) {
-    const url = "/api/togo";
+    const url = "/api/v1/togo";
     const response = await this.$axios.get(url);
     if (response.status == 200) {
       const { data } = response;
@@ -32,7 +32,7 @@ export const actions = {
     }
   },
   async addTogo(ctx) {
-    const url = "/api/togo/add";
+    const url = "/api/v1/togo/add";
     const param = {
       name: "hoge"
     };
