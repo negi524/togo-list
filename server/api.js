@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const moment = require("moment");
 // const database = require("./database");  // database.jsモジュールを読み込む
 
 // knexの設定
@@ -43,15 +44,13 @@ router.get("/v1/togo", (req, res, next) => {
  */
 router.post("/v1/togo/add", (req, res, next) => {
   // 現在日時を計算
-  const today = new Date();
-  const YYYY = today.getFullYear();
-  const MM = ("0" + (today.getMonth() + 1)).slice(-2);
-  const DD = ("0" + today.getDate()).slice(-2);
+  const now = moment();
+  const date = now.format("YYYYMMDD");
 
   const addData = {
     about: req.body["name"],
-    created: YYYY + MM + DD,
-    updated: YYYY + MM + DD
+    created: date,
+    updated: date
   };
 
   new Togo(addData)
