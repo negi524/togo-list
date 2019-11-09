@@ -57,7 +57,7 @@ router.post("/v1/togo/add", (req, res, next) => {
     .save()
     .then(model => {
       // 追加したデータを返却
-      res.json(model.attributes);
+      res.status(201).json(model.attributes);
     })
     .catch(err => {
       res.status(500).json({
