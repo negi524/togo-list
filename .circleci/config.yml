@@ -28,6 +28,8 @@ jobs:
       - image: circleci/node:10.13.0
     steps:
       - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: build package
           command: "npm run build"
