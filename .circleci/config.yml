@@ -33,8 +33,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-npm-cache-{{ checksum "package-lock.json" }}
-          key: v1-npm-cache-
+          keys:
+            - v1-npm-cache-{{ checksum "package-lock.json" }}
+            - v1-npm-cache-
       - run:
           name: install npm
           command: "npm install"
