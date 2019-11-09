@@ -40,7 +40,7 @@ router.get("/v1/togo", (req, res, next) => {
 
 /**
  * 行きたいところリストを追加するエンドポイント
- * @param name
+ * @param name: 行きたいところの名前
  */
 router.post("/v1/togo/add", (req, res, next) => {
   // 現在日時を計算
@@ -66,6 +66,12 @@ router.post("/v1/togo/add", (req, res, next) => {
         detail: { message: err.message }
       });
     });
+});
+
+router.delete("/v1/togo/delete", (req, res, next) => {
+  // 削除対象のIDを取得
+  // 削除が完了したことを返却する
+  res.status(204).json();
 });
 
 /**
