@@ -1,13 +1,17 @@
 <template>
   <div>
+    <h1 class="title">
+      <i class="el-icon-folder-opened"></i>
+      My Application
+    </h1>
     <nuxt />
   </div>
 </template>
 
-<style>
+<style lang="scss">
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -51,5 +55,8 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+.el-icon-folder-opened {
+  margin-right: 10px;
 }
 </style>
