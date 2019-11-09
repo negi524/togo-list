@@ -36,5 +36,7 @@ jobs:
           key: v1-npm-cache-{{ checksum "package-lock.json" }}
           key: v1-npm-cache-
       - run:
+          name: install npm
+          command: "npm install"
           name: build package
           command: "npm run build"
