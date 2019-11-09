@@ -13,11 +13,9 @@ jobs:
     steps:
       - checkout
       - run: echo "A first hello"
-      - run: sleep 25
-  two:
+  test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:latest
     steps:
       - checkout
-      - run: echo "A more familiar hi"
-      - run: sleep 15
+      - run: npm run test
