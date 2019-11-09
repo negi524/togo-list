@@ -28,6 +28,8 @@ jobs:
           command: "npm run test"
 
   build:
+    docker:
+      - image: circleci/node:10.13.0
     steps:
       - checkout
       - restore_cache:
