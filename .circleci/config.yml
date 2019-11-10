@@ -1,6 +1,13 @@
 workflows:
   version: 2
   test_build:
+    triggers:
+      - schedule:
+          filters:
+            # masterブランチのみをci/cdの対象とする
+            branches:
+              only:
+                - master
     jobs:
       - test
       - build:
