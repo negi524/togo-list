@@ -81,7 +81,42 @@ router.delete("/v1/togo/:pid", (req, res, next) => {
     })
     .catch(err => {
       console.error(err.message);
-      res.status(404).send();
+      res.status(404).json({
+        error: true,
+        message: "リソースが見つかりませんでした",
+        detail: { message: err.message }
+      });
+    });
+});
+
+/**
+ * 行きたいところリストを更新するエンドポイント
+ * パスパラメータで指定する
+ * @param pid {number} 更新対象のPid
+ * @param name {string} 行きたいところの名前
+ */
+router.put("/v1/togo/:pid", (req, res, next) => {
+  // 現在日時を計算
+  const now = moment();
+  const date = now.format("YYYYMMDD");
+  const addData = {
+    pid: req.params.pid,
+    about: req.body["name"],
+    updated: date
+  };
+
+  new Togo(addData)
+    .save()
+    .then(model => {
+      console.log("Success");
+      res.status(200).json(model.attributes);
+    })
+    .catch(err => {
+      res.status(404).json({
+        error: true,
+        message: "更新対象のデータが存在しません",
+        detail: { message: err.message }
+      });
     });
 });
 
