@@ -68,8 +68,14 @@ router.post("/v1/togo/add", (req, res, next) => {
     });
 });
 
-router.delete("/v1/togo/delete", (req, res, next) => {
+/**
+ * 行きたいところリストを削除するエンドポイント
+ * パスパラメータで指定する
+ * @param pid: 削除対象のPid
+ */
+router.delete("/v1/togo/:pid", (req, res, next) => {
   // 削除対象のIDを取得
+  console.log(req.params.pid);
   // 削除が完了したことを返却する
   res.status(204).json();
 });
