@@ -40,9 +40,9 @@ router.get("/v1/togo", (req, res, next) => {
 
 /**
  * 行きたいところリストを追加するエンドポイント
- * @param name
+ * @param name {string} 行きたいところの名前
  */
-router.post("/v1/togo/add", (req, res, next) => {
+router.post("/v1/togo", (req, res, next) => {
   // 現在日時を計算
   const now = moment();
   const date = now.format("YYYYMMDD");
@@ -57,7 +57,7 @@ router.post("/v1/togo/add", (req, res, next) => {
     .save()
     .then(model => {
       // 追加したデータを返却
-      res.json(model.attributes);
+      res.status(201).json(model.attributes);
     })
     .catch(err => {
       res.status(500).json({
@@ -65,6 +65,23 @@ router.post("/v1/togo/add", (req, res, next) => {
         message: "DBへの追加に失敗しました",
         detail: { message: err.message }
       });
+    });
+});
+
+/**
+ * 行きたいところリストを削除するエンドポイント
+ * パスパラメータで指定する
+ * @param pid {number} 削除対象のPid
+ */
+router.delete("/v1/togo/:pid", (req, res, next) => {
+  new Togo({ pid: req.params.pid })
+    .destroy()
+    .then(model => {
+      res.status(204).send();
+    })
+    .catch(err => {
+      console.error(err.message);
+      res.status(404).send();
     });
 });
 

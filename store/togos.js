@@ -32,7 +32,7 @@ export const actions = {
     }
   },
   async addTogo(ctx) {
-    const url = "/api/v1/togo/add";
+    const url = "/api/v1/togo";
     const param = {
       name: "hoge"
     };
