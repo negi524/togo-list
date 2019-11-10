@@ -31,17 +31,31 @@ export const actions = {
       console.error("get request error!");
     }
   },
+  /**
+   * togoリストに追加を行い、Vuexに格納する
+   * @param {Object} ctx
+   */
   async addTogo(ctx) {
     const url = "/api/v1/togo";
     const param = {
       name: "hoge"
     };
     const response = await this.$axios.post(url, param);
-    if (response.status == 200) {
+    if (200 <= response.status && response.status < 300) {
       const { data } = response;
       ctx.commit("set", data);
     } else {
       console.error("post request error!");
     }
-  }
+  },
+  /**
+   * togoリストの更新を行い、Vuexの状態も更新する
+   * @param {Object} ctx
+   */
+  async updateTogo(ctx) {},
+  /**
+   * togoリストから削除を行い、Vuexからも削除する
+   * @param {Object} ctx
+   */
+  async deleteTogo(ctx) {}
 };
