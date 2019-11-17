@@ -9,9 +9,6 @@ export const mutations = {
   },
   add(state, payload) {
     state.list.push(payload);
-  },
-  remove(state, { togo }) {
-    state.list.splice(state.list.indexOf(todo), 1);
   }
 };
 
@@ -22,7 +19,7 @@ export const actions = {
    * @param {Object} ctx コンテキストオブジェクト
    */
   async fetchTogo(ctx) {
-    const url = "/api/v1/togo";
+    const url = process.env.FIREBASE_DB_URL + "/place_v1.json";
     const response = await this.$axios.get(url);
     if (response.status == 200) {
       const { data } = response;
@@ -36,7 +33,7 @@ export const actions = {
    * @param {Object} ctx
    */
   async addTogo(ctx) {
-    const url = "/api/v1/togo";
+    const url = process.env.FIREBASE_DB_URL + "/place_v1.json";
     const param = {
       name: "hoge"
     };
@@ -49,13 +46,23 @@ export const actions = {
     }
   },
   /**
-   * togoリストの更新を行い、Vuexの状態も更新する
+   * Firebaseにobjの追加を行い、成功した場合Vuexにも追加を行う
    * @param {Object} ctx
+   * @param {Object} obj: フォームから渡されるオブジェクト
    */
-  async updateTogo(ctx) {},
-  /**
-   * togoリストから削除を行い、Vuexからも削除する
-   * @param {Object} ctx
-   */
-  async deleteTogo(ctx) {}
+  async pushTogo(ctx, obj) {
+    const url = process.env.FIREBASE_DB_URL + "/place_v2.json";
+    let param = {
+      0: {
+        name: obj.name,
+        station: obj.station,
+        prefectures: obj.prefectures,
+        created: "2019-11-17"
+      }
+    };
+    const response = await this.$axios.put(url, param);
+    if (200 <= response.state && response.state < 300) {
+      ctx.commit("add", obj);
+    }
+  }
 };
