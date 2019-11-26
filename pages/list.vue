@@ -22,6 +22,7 @@ export default {
   data: function() {
     return {
       form: {
+        index: 0,
         name: "",
         station: "",
         url: "",

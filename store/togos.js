@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const state = () => ({
   list: []
 });
@@ -57,12 +59,15 @@ export const actions = {
         name: obj.name,
         station: obj.station,
         prefectures: obj.prefectures,
-        created: "2019-11-17"
+        created: moment().format("YYYY-MM-DD")
       }
     };
     const response = await this.$axios.put(url, param);
-    if (200 <= response.state && response.state < 300) {
-      ctx.commit("add", obj);
+    if (200 <= response.status && response.status < 300) {
+      const { data } = response;
+      ctx.commit("add", data[0]);
+    } else {
+      console.error("APIの接続に失敗しました");
     }
   }
 };
