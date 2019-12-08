@@ -1,10 +1,27 @@
 <template>
   <div>
-    <h1 class="title">
-      <i class="el-icon-folder-opened"></i>
-      My Application
-    </h1>
-    <nuxt />
+    <header class="header">
+      <h1 class="title">
+        <i class="el-icon-folder-opened"></i>
+        My Application
+      </h1>
+      <nav class="header__nav">
+        <ul>
+          <li>about me</li>
+          <li>to go list</li>
+          <li>
+            <a href="https://github.com/negi524">GitHub</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <nuxt />
+    </main>
+    <div class="sidebar">
+      <p>他ページへのナビゲーションとしてここを使う</p>
+    </div>
+    <footer class="footer">footer</footer>
   </div>
 </template>
 
@@ -27,6 +44,11 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+/* 全体のレイアウト
+----------------------------------------------------------------------------------- */
+
+// TODO: frexboxを使ってレイアウトを整える
 
 .button--green {
   display: inline-block;
