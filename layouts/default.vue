@@ -1,10 +1,29 @@
 <template>
   <div>
-    <h1 class="title">
-      <i class="el-icon-folder-opened"></i>
-      My Application
-    </h1>
-    <nuxt />
+    <header class="header">
+      <h1 class="title">
+        <i class="el-icon-folder-opened"></i>
+        My Application
+      </h1>
+      <nav class="header__nav">
+        <ul>
+          <li>about me</li>
+          <li>to go list</li>
+          <li>
+            <a href="https://github.com/negi524">GitHub</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section class="mainWrapper">
+      <main class="main">
+        <nuxt />
+      </main>
+      <section class="sidebar">
+        <p>他ページへのナビゲーションとしてここを使う</p>
+      </section>
+    </section>
+    <footer class="footer">footer</footer>
   </div>
 </template>
 
@@ -28,6 +47,46 @@ html {
   margin: 0;
 }
 
+/* ヘッダー
+----------------------------------------------------------------------------------- */
+.header {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
+/* 中央部のレイアウト
+----------------------------------------------------------------------------------- */
+.mainWrapper {
+  display: flex;
+  padding: 10px;
+}
+
+/* メインコンテンツ
+----------------------------------------------------------------------------------- */
+.main {
+  width: 75%;
+  padding: 10px;
+}
+
+/* サイドバー
+----------------------------------------------------------------------------------- */
+.sidebar {
+  width: 25%;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
+/* フッター
+----------------------------------------------------------------------------------- */
+.footer {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
+/* その他の要素
+----------------------------------------------------------------------------------- */
 .button--green {
   display: inline-block;
   border-radius: 4px;
