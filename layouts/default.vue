@@ -15,12 +15,14 @@
         </ul>
       </nav>
     </header>
-    <main>
-      <nuxt />
-    </main>
-    <div class="sidebar">
-      <p>他ページへのナビゲーションとしてここを使う</p>
-    </div>
+    <section class="mainWrapper">
+      <main class="main">
+        <nuxt />
+      </main>
+      <section class="sidebar">
+        <p>他ページへのナビゲーションとしてここを使う</p>
+      </section>
+    </section>
     <footer class="footer">footer</footer>
   </div>
 </template>
@@ -45,11 +47,46 @@ html {
   margin: 0;
 }
 
-/* 全体のレイアウト
+/* ヘッダー
 ----------------------------------------------------------------------------------- */
+.header {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #dddddd;
+}
 
-// TODO: frexboxを使ってレイアウトを整える
+/* 中央部のレイアウト
+----------------------------------------------------------------------------------- */
+.mainWrapper {
+  display: flex;
+  padding: 10px;
+}
 
+/* メインコンテンツ
+----------------------------------------------------------------------------------- */
+.main {
+  width: 75%;
+  padding: 10px;
+}
+
+/* サイドバー
+----------------------------------------------------------------------------------- */
+.sidebar {
+  width: 25%;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
+/* フッター
+----------------------------------------------------------------------------------- */
+.footer {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
+/* その他の要素
+----------------------------------------------------------------------------------- */
 .button--green {
   display: inline-block;
   border-radius: 4px;
