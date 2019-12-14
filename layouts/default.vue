@@ -7,8 +7,12 @@
       </h1>
       <nav class="header-nav">
         <ul class="header-nav__wrapper">
-          <li class="header-nav__item">about me</li>
-          <li class="header-nav__item">to go list</li>
+          <li class="header-nav__item">
+            <a href>about me</a>
+          </li>
+          <li class="header-nav__item">
+            <a href>to go list</a>
+          </li>
           <li class="header-nav__item">
             <a href="https://github.com/negi524">GitHub</a>
           </li>
