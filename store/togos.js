@@ -21,11 +21,21 @@ export const actions = {
    * @param {Object} ctx コンテキストオブジェクト
    */
   async fetchTogo(ctx) {
-    const url = process.env.FIREBASE_DB_URL + "/place_v1.json";
+    const url = process.env.FIREBASE_DB_URL + "/place_v3.json";
     const response = await this.$axios.get(url);
+
     if (response.status == 200) {
       const { data } = response;
-      ctx.commit("set", data);
+      // 一番最上位のキーをnameとしてデータ形式を変更する
+      for (let key in data) {
+        let dataObj = {
+          name: key,
+          station: data[key].station,
+          created: data[key].created,
+          prefectures: data[key].prefectures
+        };
+        ctx.commit("add", dataObj);
+      }
     } else {
       console.error("get request error!");
     }
