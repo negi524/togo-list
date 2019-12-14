@@ -1,15 +1,19 @@
 <template>
   <div>
     <header class="header">
-      <h1 class="title">
+      <h1 class="header__title">
         <i class="el-icon-folder-opened"></i>
         My Application
       </h1>
-      <nav class="header__nav">
-        <ul>
-          <li>about me</li>
-          <li>to go list</li>
-          <li>
+      <nav class="header-nav">
+        <ul class="header-nav__wrapper">
+          <li class="header-nav__item">
+            <a href>about me</a>
+          </li>
+          <li class="header-nav__item">
+            <a href>to go list</a>
+          </li>
+          <li class="header-nav__item">
             <a href="https://github.com/negi524">GitHub</a>
           </li>
         </ul>
@@ -28,10 +32,16 @@
 </template>
 
 <style lang="scss">
+@import "./assets/style/reset.scss"; // reset.cssを呼び出し
+$green: #8cd790;
+$lightGreen: #c5e99b;
+$pistachio: #77af9c;
+$grey: #757575;
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
+  color: #2d2d2d;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -50,9 +60,25 @@ html {
 /* ヘッダー
 ----------------------------------------------------------------------------------- */
 .header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
-  padding: 10px;
-  background-color: #dddddd;
+  padding: 30px 15px 30px;
+  background-color: $pistachio;
+
+  &__title {
+    font-size: 25px;
+  }
+}
+
+.header-nav {
+  margin: auto 0 0;
+  font-size: 18px;
+  &__wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+  }
 }
 
 /* 中央部のレイアウト
