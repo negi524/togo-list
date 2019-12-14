@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
 import Table from "@/components/Table.vue";
 
 export default {
