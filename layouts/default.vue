@@ -5,11 +5,11 @@
         <i class="el-icon-folder-opened"></i>
         My Application
       </h1>
-      <nav class="header__nav">
-        <ul>
-          <li>about me</li>
-          <li>to go list</li>
-          <li>
+      <nav class="header-nav">
+        <ul class="header-nav__wrapper">
+          <li class="header-nav__item">about me</li>
+          <li class="header-nav__item">to go list</li>
+          <li class="header-nav__item">
             <a href="https://github.com/negi524">GitHub</a>
           </li>
         </ul>
@@ -28,6 +28,11 @@
 </template>
 
 <style lang="scss">
+@import "./assets/style/reset.scss"; // reset.cssを呼び出し
+$green: #8cd790;
+$lightGreen: #c5e99b;
+$pistachio: #77af9c;
+$black: #757575;
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -52,7 +57,13 @@ html {
 .header {
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #dddddd;
+  background-color: $pistachio;
+}
+
+.header-nav {
+  &__wrapper {
+    display: flex;
+  }
 }
 
 /* 中央部のレイアウト
