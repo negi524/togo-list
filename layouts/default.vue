@@ -9,16 +9,18 @@
         <p>他ページへのナビゲーションとしてここを使う</p>
       </section>
     </section>
-    <footer class="footer">footer</footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "~/components/Header.vue";
+import Footer from "~/components/Footer.vue";
 
 export default {
   components: {
-    Header
+    Header,
+    Footer
   }
 };
 </script>
@@ -64,14 +66,6 @@ html {
 ----------------------------------------------------------------------------------- */
 .sidebar {
   width: 25%;
-  padding: 10px;
-  background-color: #dddddd;
-}
-
-/* フッター
------------------------------------------------------------------------------------ */
-.footer {
-  margin-bottom: 20px;
   padding: 10px;
   background-color: #dddddd;
 }
