@@ -11,7 +11,7 @@
             <a href>about me</a>
           </li>
           <li class="header-nav__item">
-            <a href>to go list</a>
+            <a href="/list">to go list</a>
           </li>
           <li class="header-nav__item">
             <a href="https://github.com/negi524">GitHub</a>
