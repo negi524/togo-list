@@ -1,9 +1,9 @@
 import { mount } from "@vue/test-utils";
-import Footer from "@/components/Footer.vue";
+import GlobalFooter from "@/components/GlobalFooter.vue";
 
-describe("Header", () => {
+describe("GlobalFooter", () => {
   test("is a Vue instance", () => {
-    const wrapper = mount(Footer);
+    const wrapper = mount(GlobalFooter);
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
 });

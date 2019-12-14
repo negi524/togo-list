@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <GlobalHeader />
     <section class="mainWrapper">
       <main class="main">
         <nuxt />
@@ -9,18 +9,18 @@
         <p>他ページへのナビゲーションとしてここを使う</p>
       </section>
     </section>
-    <Footer />
+    <GlobalFooter />
   </div>
 </template>
 
 <script>
-import Header from "~/components/Header.vue";
-import Footer from "~/components/Footer.vue";
+import GlobalHeader from "~/components/GlobalHeader.vue";
+import GlobalFooter from "~/components/GlobalFooter.vue";
 
 export default {
   components: {
-    Header,
-    Footer
+    GlobalHeader,
+    GlobalFooter
   }
 };
 </script>

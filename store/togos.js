@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export const state = () => ({
   list: []
 });
@@ -9,9 +11,6 @@ export const mutations = {
   },
   add(state, payload) {
     state.list.push(payload);
-  },
-  remove(state, { togo }) {
-    state.list.splice(state.list.indexOf(todo), 1);
   }
 };
 
@@ -22,11 +21,21 @@ export const actions = {
    * @param {Object} ctx コンテキストオブジェクト
    */
   async fetchTogo(ctx) {
-    const url = "/api/v1/togo";
+    const url = process.env.FIREBASE_DB_URL + "/place_v3.json";
     const response = await this.$axios.get(url);
+
     if (response.status == 200) {
       const { data } = response;
-      ctx.commit("set", data);
+      // 一番最上位のキーをnameとしてデータ形式を変更する
+      for (let key in data) {
+        let dataObj = {
+          name: key,
+          station: data[key].station,
+          created: data[key].created,
+          prefectures: data[key].prefectures
+        };
+        ctx.commit("add", dataObj);
+      }
     } else {
       console.error("get request error!");
     }
@@ -36,7 +45,7 @@ export const actions = {
    * @param {Object} ctx
    */
   async addTogo(ctx) {
-    const url = "/api/v1/togo";
+    const url = process.env.FIREBASE_DB_URL + "/place_v1.json";
     const param = {
       name: "hoge"
     };
@@ -49,13 +58,26 @@ export const actions = {
     }
   },
   /**
-   * togoリストの更新を行い、Vuexの状態も更新する
+   * Firebaseにobjの追加を行い、成功した場合Vuexにも追加を行う
    * @param {Object} ctx
+   * @param {Object} obj: フォームから渡されるオブジェクト
    */
-  async updateTogo(ctx) {},
-  /**
-   * togoリストから削除を行い、Vuexからも削除する
-   * @param {Object} ctx
-   */
-  async deleteTogo(ctx) {}
+  async pushTogo(ctx, obj) {
+    const url = process.env.FIREBASE_DB_URL + "/place_v2.json";
+    let param = {
+      0: {
+        name: obj.name,
+        station: obj.station,
+        prefectures: obj.prefectures,
+        created: moment().format("YYYY-MM-DD")
+      }
+    };
+    const response = await this.$axios.put(url, param);
+    if (200 <= response.status && response.status < 300) {
+      const { data } = response;
+      ctx.commit("add", data[0]);
+    } else {
+      console.error("APIの接続に失敗しました");
+    }
+  }
 };
