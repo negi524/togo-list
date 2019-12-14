@@ -29,9 +29,6 @@
 
 <script>
 export default {
-  props: {
-    dark: true
-  },
   async created() {
     this.$store.dispatch("togos/fetchTogo");
   },
