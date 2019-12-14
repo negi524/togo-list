@@ -1,24 +1,6 @@
 <template>
   <div>
-    <header class="header">
-      <h1 class="header__title">
-        <i class="el-icon-folder-opened"></i>
-        My Application
-      </h1>
-      <nav class="header-nav">
-        <ul class="header-nav__wrapper">
-          <li class="header-nav__item">
-            <a href>about me</a>
-          </li>
-          <li class="header-nav__item">
-            <a href>to go list</a>
-          </li>
-          <li class="header-nav__item">
-            <a href="https://github.com/negi524">GitHub</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Header />
     <section class="mainWrapper">
       <main class="main">
         <nuxt />
@@ -31,12 +13,19 @@
   </div>
 </template>
 
+<script>
+import Header from "~/components/Header.vue";
+
+export default {
+  components: {
+    Header
+  }
+};
+</script>
+
 <style lang="scss">
-@import "./assets/style/reset.scss"; // reset.cssを呼び出し
-$green: #8cd790;
-$lightGreen: #c5e99b;
-$pistachio: #77af9c;
-$grey: #757575;
+@import "@/assets/style/reset.scss"; // reset.cssを呼び出し
+
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -55,30 +44,6 @@ html {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-
-/* ヘッダー
------------------------------------------------------------------------------------ */
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 30px 15px 30px;
-  background-color: $pistachio;
-
-  &__title {
-    font-size: 25px;
-  }
-}
-
-.header-nav {
-  margin: auto 0 0;
-  font-size: 18px;
-  &__wrapper {
-    display: flex;
-    justify-content: space-around;
-    width: 500px;
-  }
 }
 
 /* 中央部のレイアウト
