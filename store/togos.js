@@ -26,6 +26,9 @@ export const actions = {
 
     if (response.status == 200) {
       const { data } = response;
+      // 一旦配列にまとめてから、Vuexにセットする
+      let addData = [];
+
       // 一番最上位のキーをnameとしてデータ形式を変更する
       for (let key in data) {
         let dataObj = {
@@ -34,8 +37,9 @@ export const actions = {
           created: data[key].created,
           prefectures: data[key].prefectures
         };
-        ctx.commit("add", dataObj);
+        addData.push(dataObj);
       }
+      ctx.commit("set", addData);
     } else {
       console.error("get request error!");
     }
@@ -51,25 +55,22 @@ export const actions = {
     let param = {
       station: obj.station,
       prefectures: obj.prefectures,
-      created: moment().format("YYYY-MM-DD")
+      created: moment().format("YYYY-MM-DD") // 今日の日付を生成する
     };
+
     const response = await this.$axios.put(url, param);
-    console.log(response);
     if (200 <= response.status && response.status < 300) {
       const { data } = response;
-      ctx.commit("add", data[0]);
-      // 一番最上位のキーをnameとしてデータ形式を変更する
-      for (let key in data) {
-        let dataObj = {
-          name: key,
-          station: data[key].station,
-          created: data[key].created,
-          prefectures: data[key].prefectures
-        };
-        ctx.commit("add", dataObj);
-      }
+
+      const newTogo = {
+        name: key,
+        station: data.station,
+        created: data.created,
+        prefectures: data.prefectures
+      };
+      ctx.commit("add", newTogo);
     } else {
-      console.error("APIの接続に失敗しました");
+      console.error("API request error.");
     }
   }
 };
