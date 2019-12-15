@@ -92,13 +92,16 @@ export const actions = {
     } else {
       // firebase削除のキーとなる名前を取得する
       const key = ctx.state.list[index].name;
-      console.log(key);
 
-      // TODO: firebaseから削除処理を行う
-      // const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-      // const response = await this.$axios.delete(url);
-      // firebaseから削除成功したら、Vuexから削除を行う
-      ctx.commit("delete", index);
+      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+      const response = await this.$axios.delete(url);
+
+      if (response.status == 200) {
+        ctx.commit("delete", index);
+        console.debug("delete success.");
+      } else {
+        console.error("delete error.");
+      }
     }
   },
   /**

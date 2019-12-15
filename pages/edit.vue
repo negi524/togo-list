@@ -40,9 +40,13 @@ export default {
   methods: {
     pushTogo: function() {
       this.$store.dispatch("togos/pushTogo", this.form);
+      // フォームの値をリセットする
+      this.form.name = "";
+      this.form.station = "";
+      this.form.prefectures = "";
     },
     deleteTogo: function() {
-      this.$store.dispatch("togos/deleteTogoByIndex", 0);
+      // this.$store.dispatch("togos/deleteTogoByIndex", 0);
     }
   }
 };
