@@ -34,7 +34,6 @@ export default {
   },
   computed: {
     togos: function() {
-      // TODO: ミューテーションから取得する
       return this.$store.state.togos.list;
     }
   }

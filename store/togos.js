@@ -41,41 +41,33 @@ export const actions = {
     }
   },
   /**
-   * togoリストに追加を行い、Vuexに格納する
-   * @param {Object} ctx
-   */
-  async addTogo(ctx) {
-    const url = process.env.FIREBASE_DB_URL + "/place_v1.json";
-    const param = {
-      name: "hoge"
-    };
-    const response = await this.$axios.post(url, param);
-    if (200 <= response.status && response.status < 300) {
-      const { data } = response;
-      ctx.commit("set", data);
-    } else {
-      console.error("post request error!");
-    }
-  },
-  /**
    * Firebaseにobjの追加を行い、成功した場合Vuexにも追加を行う
    * @param {Object} ctx
    * @param {Object} obj: フォームから渡されるオブジェクト
    */
   async pushTogo(ctx, obj) {
-    const url = process.env.FIREBASE_DB_URL + "/place_v2.json";
+    const key = obj.name; // 名前をキーとしてfirebaseに登録する
+    const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
     let param = {
-      0: {
-        name: obj.name,
-        station: obj.station,
-        prefectures: obj.prefectures,
-        created: moment().format("YYYY-MM-DD")
-      }
+      station: obj.station,
+      prefectures: obj.prefectures,
+      created: moment().format("YYYY-MM-DD")
     };
     const response = await this.$axios.put(url, param);
+    console.log(response);
     if (200 <= response.status && response.status < 300) {
       const { data } = response;
       ctx.commit("add", data[0]);
+      // 一番最上位のキーをnameとしてデータ形式を変更する
+      for (let key in data) {
+        let dataObj = {
+          name: key,
+          station: data[key].station,
+          created: data[key].created,
+          prefectures: data[key].prefectures
+        };
+        ctx.commit("add", dataObj);
+      }
     } else {
       console.error("APIの接続に失敗しました");
     }
