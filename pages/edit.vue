@@ -47,6 +47,10 @@ export default {
     },
     deleteTogo: function() {
       // this.$store.dispatch("togos/deleteTogoByIndex", 0);
+      // const obj = {
+      //   name: "hogehoge"
+      // };
+      // this.$store.dispatch("togos/deleteTogoByObj", obj);
     }
   }
 };

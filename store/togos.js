@@ -97,17 +97,45 @@ export const actions = {
       const response = await this.$axios.delete(url);
 
       if (response.status == 200) {
+        // Vuexから削除
         ctx.commit("delete", index);
         console.debug("delete success.");
       } else {
-        console.error("delete error.");
+        console.error("API request error.");
       }
     }
   },
   /**
    * 削除対象のオブジェクトを指定して削除を行う
    * @param {object} ctx
-   * @param {object} obj 削除対象のインデックス番号
+   * @param {object} obj 削除対象のオブジェクト
    */
-  async deleteTogoByObj(ctx, obj) {}
+  async deleteTogoByObj(ctx, obj) {
+    // 名前をキーとしてVuexのリストから検索
+    const key = obj.name;
+    let targetExists = false; // 対象のオブジェクトが存在するかどうか
+    let index; // 削除対象の配列のインデックス
+
+    for (let i in ctx.state.list) {
+      console.log(ctx.state.list[i].name);
+      if (key === ctx.state.list[i].name) {
+        targetExists = true;
+        index = i;
+      }
+    }
+
+    if (!targetExists) {
+      console.error("object is not exists.");
+    } else {
+      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+      const response = await this.$axios.delete(url);
+      if (response.status == 200) {
+        // Vuexから削除
+        ctx.commit("delete", index);
+        console.debug("delete success.");
+      } else {
+        console.error("API request error.");
+      }
+    }
+  }
 };
