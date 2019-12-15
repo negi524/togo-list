@@ -16,6 +16,7 @@
       ></v-text-field>
       <v-btn class="mr-4" @click="pushTogo">send button</v-btn>
     </v-form>
+    <button @click="deleteTogo">delete button</button>
   </div>
 </template>
 
@@ -39,6 +40,17 @@ export default {
   methods: {
     pushTogo: function() {
       this.$store.dispatch("togos/pushTogo", this.form);
+      // フォームの値をリセットする
+      this.form.name = "";
+      this.form.station = "";
+      this.form.prefectures = "";
+    },
+    deleteTogo: function() {
+      // this.$store.dispatch("togos/deleteTogoByIndex", 0);
+      // const obj = {
+      //   name: "hogehoge"
+      // };
+      // this.$store.dispatch("togos/deleteTogoByObj", obj);
     }
   }
 };

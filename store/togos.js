@@ -11,6 +11,14 @@ export const mutations = {
   },
   add(state, payload) {
     state.list.push(payload);
+  },
+  /**
+   * 配列の番号を指定して削除する
+   * @param {object} state
+   * @param {number} payload 削除対象のインデックス番号
+   */
+  delete(state, payload) {
+    state.list.splice(payload, 1);
   }
 };
 
@@ -70,6 +78,64 @@ export const actions = {
       ctx.commit("add", newTogo);
     } else {
       console.error("API request error.");
+    }
+  },
+  /**
+   * インデックス番号を元に削除を行う
+   * @param {object} ctx
+   * @param {number} index 削除対象のインデックス番号
+   */
+  async deleteTogoByIndex(ctx, index) {
+    // indexの整合性チェック
+    if (index >= ctx.state.list.length) {
+      console.error("out of index");
+    } else {
+      // firebase削除のキーとなる名前を取得する
+      const key = ctx.state.list[index].name;
+
+      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+      const response = await this.$axios.delete(url);
+
+      if (response.status == 200) {
+        // Vuexから削除
+        ctx.commit("delete", index);
+        console.debug("delete success.");
+      } else {
+        console.error("API request error.");
+      }
+    }
+  },
+  /**
+   * 削除対象のオブジェクトを指定して削除を行う
+   * @param {object} ctx
+   * @param {object} obj 削除対象のオブジェクト
+   */
+  async deleteTogoByObj(ctx, obj) {
+    // 名前をキーとしてVuexのリストから検索
+    const key = obj.name;
+    let targetExists = false; // 対象のオブジェクトが存在するかどうか
+    let index; // 削除対象の配列のインデックス
+
+    for (let i in ctx.state.list) {
+      console.log(ctx.state.list[i].name);
+      if (key === ctx.state.list[i].name) {
+        targetExists = true;
+        index = i;
+      }
+    }
+
+    if (!targetExists) {
+      console.error("object is not exists.");
+    } else {
+      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+      const response = await this.$axios.delete(url);
+      if (response.status == 200) {
+        // Vuexから削除
+        ctx.commit("delete", index);
+        console.debug("delete success.");
+      } else {
+        console.error("API request error.");
+      }
     }
   }
 };
