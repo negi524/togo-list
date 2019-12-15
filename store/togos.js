@@ -11,6 +11,14 @@ export const mutations = {
   },
   add(state, payload) {
     state.list.push(payload);
+  },
+  /**
+   * 配列の番号を指定して削除する
+   * @param {object} state
+   * @param {number} payload 削除対象のインデックス番号
+   */
+  delete(state, payload) {
+    state.list.splice(payload, 1);
   }
 };
 
@@ -71,5 +79,32 @@ export const actions = {
     } else {
       console.error("API request error.");
     }
-  }
+  },
+  /**
+   * インデックス番号を元に削除を行う
+   * @param {object} ctx
+   * @param {number} index 削除対象のインデックス番号
+   */
+  async deleteTogoByIndex(ctx, index) {
+    // indexの整合性チェック
+    if (index >= ctx.state.list.length) {
+      console.error("out of index");
+    } else {
+      // firebase削除のキーとなる名前を取得する
+      const key = ctx.state.list[index].name;
+      console.log(key);
+
+      // TODO: firebaseから削除処理を行う
+      // const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+      // const response = await this.$axios.delete(url);
+      // firebaseから削除成功したら、Vuexから削除を行う
+      ctx.commit("delete", index);
+    }
+  },
+  /**
+   * 削除対象のオブジェクトを指定して削除を行う
+   * @param {object} ctx
+   * @param {object} obj 削除対象のインデックス番号
+   */
+  async deleteTogoByObj(ctx, obj) {}
 };
