@@ -5,9 +5,6 @@
       <main class="main">
         <nuxt />
       </main>
-      <section class="sidebar">
-        <p>他ページへのナビゲーションとしてここを使う</p>
-      </section>
     </section>
     <GlobalFooter />
   </div>
@@ -58,16 +55,8 @@ html {
 /* メインコンテンツ
 ----------------------------------------------------------------------------------- */
 .main {
-  width: 75%;
+  width: 100%;
   padding: 10px;
-}
-
-/* サイドバー
------------------------------------------------------------------------------------ */
-.sidebar {
-  width: 25%;
-  padding: 10px;
-  background-color: #dddddd;
 }
 
 /* その他の要素
