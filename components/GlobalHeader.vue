@@ -7,10 +7,10 @@
     <nav class="header-nav">
       <ul class="header-nav__wrapper">
         <li class="header-nav__item">
-          <a href>about me</a>
+          <a href="/list">一覧ページ</a>
         </li>
         <li class="header-nav__item">
-          <a href="/list">to go list</a>
+          <a href="/edit">編集ページ</a>
         </li>
         <li class="header-nav__item">
           <a href="https://github.com/negi524">GitHub</a>
