@@ -21,7 +21,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/colors/default.scss";
+@import "@/assets/style/colors.scss";
 
 .header {
   display: flex;
