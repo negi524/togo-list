@@ -29,14 +29,17 @@ export default {
   data: function() {
     return {
       form: {
-        index: 0,
         name: "",
         station: "",
-        url: "",
         prefectures: "",
         created: null
       }
     };
+  },
+  methods: {
+    pushTogo: function() {
+      this.$store.dispatch("togos/pushTogo", this.form);
+    }
   }
 };
 </script>
