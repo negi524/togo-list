@@ -31,13 +31,12 @@ export const actions = {
 
       // 一番最上位のキーをnameとしてデータ形式を変更する
       for (let key in data) {
-        let dataObj = {
+        addData.push({
           name: key,
           station: data[key].station,
           created: data[key].created,
           prefectures: data[key].prefectures
-        };
-        addData.push(dataObj);
+        });
       }
       ctx.commit("set", addData);
     } else {
