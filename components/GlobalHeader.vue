@@ -28,7 +28,7 @@
   justify-content: space-between;
   margin-bottom: 10px;
   padding: 30px 15px 30px;
-  background-color: $pistachio;
+  background-color: $mainColor;
 
   &__title {
     font-size: 25px;
