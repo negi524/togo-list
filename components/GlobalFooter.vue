@@ -12,7 +12,7 @@
 .footer {
   height: 100px;
   padding: 15px 15px 30px;
-  background-color: $pistachio;
+  background-color: $mainColor;
 
   &__wrapper {
     width: 400px;

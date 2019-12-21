@@ -6,16 +6,8 @@
     <h2 class="heading">データを追加する</h2>
     <v-form class="togo__form" ref="form">
       <v-text-field label="名称" v-model="form.name" required></v-text-field>
-      <v-text-field
-        label="都道府県"
-        v-model="form.prefectures"
-        required
-      ></v-text-field>
-      <v-text-field
-        label="最寄駅"
-        v-model="form.station"
-        required
-      ></v-text-field>
+      <v-text-field label="都道府県" v-model="form.prefectures" required></v-text-field>
+      <v-text-field label="最寄駅" v-model="form.station" required></v-text-field>
       <v-btn class="mr-4" @click="pushTogo">send button</v-btn>
     </v-form>
     <hr />
@@ -67,6 +59,6 @@ export default {
 .heading {
   margin-bottom: 30px;
   padding: 10px 10px;
-  border-left: solid 5px $green;
+  border-left: solid 5px $accentColor;
 }
 </style>
