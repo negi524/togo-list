@@ -7,12 +7,12 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/colors/default.scss";
+@import "@/assets/style/colors.scss";
 
 .footer {
   height: 100px;
   padding: 15px 15px 30px;
-  background-color: $pistachio;
+  background-color: $mainColor;
 
   &__wrapper {
     width: 400px;

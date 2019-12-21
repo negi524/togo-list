@@ -5,9 +5,6 @@
       <main class="main">
         <nuxt />
       </main>
-      <section class="sidebar">
-        <p>他ページへのナビゲーションとしてここを使う</p>
-      </section>
     </section>
     <GlobalFooter />
   </div>
@@ -27,12 +24,13 @@ export default {
 
 <style lang="scss">
 @import "@/assets/style/reset.scss"; // reset.cssを呼び出し
+@import "@/assets/style/colors.scss";
 
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
-  color: #2d2d2d;
+  color: $fontColor;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -58,16 +56,8 @@ html {
 /* メインコンテンツ
 ----------------------------------------------------------------------------------- */
 .main {
-  width: 75%;
+  width: 100%;
   padding: 10px;
-}
-
-/* サイドバー
------------------------------------------------------------------------------------ */
-.sidebar {
-  width: 25%;
-  padding: 10px;
-  background-color: #dddddd;
 }
 
 /* その他の要素
