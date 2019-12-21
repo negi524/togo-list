@@ -33,7 +33,7 @@
 
 .header-title {
   margin: auto 15px;
-  color: $accentColor;
+  color: $baseColor;
   font-size: 25px;
 }
 
