@@ -46,6 +46,7 @@
     height: 100%;
   }
   &__item {
+    list-style: none;
     width: 200px;
     height: 50px;
     margin: auto 10px;

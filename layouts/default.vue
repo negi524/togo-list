@@ -23,7 +23,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/style/reset.scss"; // reset.cssを呼び出し
 @import "@/assets/style/colors.scss";
 
 html {
