@@ -99,7 +99,7 @@ export const actions = {
       if (response.status == 200) {
         // Vuexから削除
         ctx.commit("delete", index);
-        console.debug("delete success.");
+        console.log("delete success.");
       } else {
         console.error("API request error.");
       }
@@ -117,7 +117,6 @@ export const actions = {
     let index; // 削除対象の配列のインデックス
 
     for (let i in ctx.state.list) {
-      console.log(ctx.state.list[i].name);
       if (key === ctx.state.list[i].name) {
         targetExists = true;
         index = i;
@@ -132,7 +131,7 @@ export const actions = {
       if (response.status == 200) {
         // Vuexから削除
         ctx.commit("delete", index);
-        console.debug("delete success.");
+        console.log("delete success.");
       } else {
         console.error("API request error.");
       }

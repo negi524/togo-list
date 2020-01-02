@@ -10,6 +10,7 @@
     <b-button @click="pushTogo">データ登録</b-button>
     <hr />
     <h2 class="heading">データを削除する</h2>
+    <b-form-input v-model="deleteName" placeholder="削除対象の名称"></b-form-input>
     <b-button @click="deleteTogo">データ削除</b-button>
   </div>
 </template>
@@ -28,7 +29,8 @@ export default {
         station: "",
         prefectures: "",
         created: null
-      }
+      },
+      deleteName: ""
     };
   },
   methods: {
@@ -41,10 +43,12 @@ export default {
     },
     deleteTogo: function() {
       // this.$store.dispatch("togos/deleteTogoByIndex", 0);
-      // const obj = {
-      //   name: "hogehoge"
-      // };
-      // this.$store.dispatch("togos/deleteTogoByObj", obj);
+      const obj = {
+        name: this.deleteName
+      };
+      this.$store.dispatch("togos/deleteTogoByObj", obj);
+      // フォームの値をリセットする
+      this.deleteName = "";
     }
   }
 };
