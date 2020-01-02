@@ -47,6 +47,8 @@ export default {
         name: this.deleteName
       };
       this.$store.dispatch("togos/deleteTogoByObj", obj);
+      // フォームの値をリセットする
+      this.deleteName = "";
     }
   }
 };
