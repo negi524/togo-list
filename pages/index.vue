@@ -6,7 +6,6 @@
       <h2 class="subtitle">My groovy Nuxt.js project</h2>
       <div class="links">
         <a href="/list" class="button--grey">リスト</a>
-        <a href="/form" class="button--grey">フォーム</a>
       </div>
     </div>
   </div>

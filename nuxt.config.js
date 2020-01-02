@@ -26,7 +26,6 @@ module.exports = {
    ** Global CSS
    */
   css: [
-    "@/assets/style/reset.scss",
     "@/assets/style/colors.scss",
     "@/assets/style/bootstrap.scss"
   ],
@@ -46,8 +45,8 @@ module.exports = {
     "@nuxtjs/axios",
     "@nuxtjs/pwa",
     "@nuxtjs/dotenv",
-    "@nuxtjs/vuetify",
-    "@nuxtjs/moment"
+    "@nuxtjs/moment",
+    "bootstrap-vue/nuxt"
   ],
   /*
    ** Axios module configuration

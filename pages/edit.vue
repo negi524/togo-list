@@ -4,15 +4,13 @@
     <TogoTable />
     <hr />
     <h2 class="heading">データを追加する</h2>
-    <v-form class="togo__form" ref="form">
-      <v-text-field label="名称" v-model="form.name" required></v-text-field>
-      <v-text-field label="都道府県" v-model="form.prefectures" required></v-text-field>
-      <v-text-field label="最寄駅" v-model="form.station" required></v-text-field>
-      <v-btn class="mr-4" @click="pushTogo">send button</v-btn>
-    </v-form>
+    <b-form-input v-model="form.name" placeholder="名称"></b-form-input>
+    <b-form-input v-model="form.prefectures" placeholder="都道府県"></b-form-input>
+    <b-form-input v-model="form.station" placeholder="最寄駅"></b-form-input>
+    <b-button @click="pushTogo">データ登録</b-button>
     <hr />
     <h2 class="heading">データを削除する</h2>
-    <button @click="deleteTogo">delete button</button>
+    <b-button @click="deleteTogo">データ削除</b-button>
   </div>
 </template>
 
@@ -53,7 +51,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/reset.scss";
 @import "@/assets/style/colors.scss";
 
 .heading {
