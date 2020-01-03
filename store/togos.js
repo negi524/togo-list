@@ -43,7 +43,8 @@ export const actions = {
           name: key,
           station: data[key].station,
           created: data[key].created,
-          prefectures: data[key].prefectures
+          prefectures: data[key].prefectures,
+          done: data[key].done
         });
       }
       ctx.commit("set", addData);
@@ -62,7 +63,8 @@ export const actions = {
     let param = {
       station: obj.station,
       prefectures: obj.prefectures,
-      created: moment().format("YYYY-MM-DD") // 今日の日付を生成する
+      created: moment().format("YYYY-MM-DD"), // 今日の日付を生成する
+      done: false
     };
 
     const response = await this.$axios.put(url, param);
@@ -73,7 +75,8 @@ export const actions = {
         name: key,
         station: data.station,
         created: data.created,
-        prefectures: data.prefectures
+        prefectures: data.prefectures,
+        done: data.done
       };
       ctx.commit("add", newTogo);
     } else {
