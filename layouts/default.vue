@@ -6,7 +6,7 @@
         <nuxt />
       </main>
     </section>
-    <GlobalFooter />
+    <!-- <GlobalFooter /> -->
   </div>
 </template>
 
