@@ -15,7 +15,7 @@
   background-color: $mainColor;
 
   &__wrapper {
-    width: 400px;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
   }
