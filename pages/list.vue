@@ -7,14 +7,14 @@
 </template>
 
 <script>
-import TogoCard from "@/components/TogoCard.vue";
+const TogoCard = () => import("@/components/TogoCard.vue");
 
 export default {
   components: {
     TogoCard
   },
-  async created() {
-    this.$store.dispatch("togos/fetchTogo");
+  async fetch({ store, params }) {
+    await store.dispatch("togos/fetchTogo");
   },
   computed: {
     togos: function() {
