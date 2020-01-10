@@ -1,17 +1,16 @@
 <template>
   <div>
-    <TogoTable />
-    <togo-card v-for="togo in togos" :key="togo.name" :togo="togo" />
+    <div class="card-deck">
+      <togo-card v-for="togo in togos" :key="togo.name" :togo="togo" />
+    </div>
   </div>
 </template>
 
 <script>
-import TogoTable from "@/components/TogoTable.vue";
 import TogoCard from "@/components/TogoCard.vue";
 
 export default {
   components: {
-    TogoTable,
     TogoCard
   },
   async created() {
