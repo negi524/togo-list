@@ -1,15 +1,25 @@
 <template>
   <div>
-    <TogoTable />
+    <div class="card-deck">
+      <togo-card v-for="togo in togos" :key="togo.name" :togo="togo" />
+    </div>
   </div>
 </template>
 
 <script>
-import TogoTable from "@/components/TogoTable.vue";
+const TogoCard = () => import("@/components/TogoCard.vue");
 
 export default {
   components: {
-    TogoTable
+    TogoCard
+  },
+  async fetch({ store, params }) {
+    await store.dispatch("togos/fetchTogo");
+  },
+  computed: {
+    togos: function() {
+      return this.$store.state.togos.list;
+    }
   }
 };
 </script>

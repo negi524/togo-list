@@ -3,16 +3,15 @@
     <h2 class="heading">データ一覧</h2>
     <TogoTable />
     <hr />
-    <h2 class="heading">データを追加する</h2>
-    <v-form class="togo__form" ref="form">
-      <v-text-field label="名称" v-model="form.name" required></v-text-field>
-      <v-text-field label="都道府県" v-model="form.prefectures" required></v-text-field>
-      <v-text-field label="最寄駅" v-model="form.station" required></v-text-field>
-      <v-btn class="mr-4" @click="pushTogo">send button</v-btn>
-    </v-form>
+    <h2 class="heading">データ追加</h2>
+    <b-form-input class="mb-2" v-model="form.name" placeholder="名称"></b-form-input>
+    <b-form-input class="mb-2" v-model="form.prefectures" placeholder="都道府県"></b-form-input>
+    <b-form-input class="mb-2" v-model="form.station" placeholder="最寄駅"></b-form-input>
+    <b-button @click="pushTogo">データ登録</b-button>
     <hr />
-    <h2 class="heading">データを削除する</h2>
-    <button @click="deleteTogo">delete button</button>
+    <h2 class="heading">データ削除</h2>
+    <b-form-input class="mb-2" v-model="deleteName" placeholder="削除対象の名称"></b-form-input>
+    <b-button @click="deleteTogo">データ削除</b-button>
   </div>
 </template>
 
@@ -30,7 +29,8 @@ export default {
         station: "",
         prefectures: "",
         created: null
-      }
+      },
+      deleteName: ""
     };
   },
   methods: {
@@ -43,17 +43,18 @@ export default {
     },
     deleteTogo: function() {
       // this.$store.dispatch("togos/deleteTogoByIndex", 0);
-      // const obj = {
-      //   name: "hogehoge"
-      // };
-      // this.$store.dispatch("togos/deleteTogoByObj", obj);
+      const obj = {
+        name: this.deleteName
+      };
+      this.$store.dispatch("togos/deleteTogoByObj", obj);
+      // フォームの値をリセットする
+      this.deleteName = "";
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/reset.scss";
 @import "@/assets/style/colors.scss";
 
 .heading {
