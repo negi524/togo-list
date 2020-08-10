@@ -13,10 +13,10 @@ module.exports = {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
-      }
+        content: process.env.npm_package_description || "",
+      },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   /*
    ** Customize the progress-bar color
@@ -29,7 +29,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/element.js"],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -43,7 +43,7 @@ module.exports = {
     "@nuxtjs/pwa",
     "@nuxtjs/dotenv",
     "@nuxtjs/moment",
-    "bootstrap-vue/nuxt"
+    "bootstrap-vue/nuxt",
   ],
   /*
    ** Axios module configuration
@@ -57,6 +57,6 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 };
