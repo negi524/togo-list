@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="footer__wrapper">
-      <span class="footer__copyright">&copy; 2019 negi_524</span>
+      <span class="footer__copyright">&copy; 2020 negi_524</span>
     </div>
   </footer>
 </template>
