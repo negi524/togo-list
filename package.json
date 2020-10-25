@@ -12,27 +12,27 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.8.0",
+    "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/moment": "^1.4.0",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "bookshelf": "^1.0.1",
-    "bootstrap": "^4.4.1",
-    "bootstrap-vue": "^2.1.0",
+    "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/pwa": "^3.2.2",
+    "bookshelf": "^1.2.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.18.1",
     "cross-env": "^5.2.0",
-    "element-ui": "^2.12.0",
+    "element-ui": "^2.13.2",
     "express": "^4.16.4",
     "knex": "^0.19.5",
-    "nuxt": "^2.10.2",
-    "sqlite3": "^4.1.0"
+    "nuxt": "^2.14.7",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.27",
+    "@vue/test-utils": "^1.1.0",
     "babel-jest": "^24.1.0",
     "jest": "^24.9.0",
     "node-sass": "^4.14.1",
     "nodemon": "^1.19.4",
-    "sass-loader": "^8.0.0",
-    "vue-jest": "^4.0.0-beta.5"
+    "sass-loader": "^8.0.2",
+    "vue-jest": "^4.0.0-rc.0"
   }
 }
