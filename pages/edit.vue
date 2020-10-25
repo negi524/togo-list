@@ -2,7 +2,7 @@
   <div>
     <div class="my-3">
       <template v-if="logined">
-        <b-button class="btn-dark" @click="logout"> ログアウトする </b-button>
+        <b-button class="btn-dark" @click="logout">ログアウトする</b-button>
       </template>
       <template v-else>
         <b-button class="btn-success" @click="login">ログインする</b-button>
@@ -12,27 +12,22 @@
     <TogoTable />
     <hr />
     <h2 class="heading">データ追加</h2>
-    <template v-if="logined">
-      <b-form-input
-        class="mb-2"
-        v-model="form.name"
-        placeholder="名称"
-      ></b-form-input>
-      <b-form-input
-        class="mb-2"
-        v-model="form.prefectures"
-        placeholder="都道府県"
-      ></b-form-input>
-      <b-form-input
-        class="mb-2"
-        v-model="form.station"
-        placeholder="最寄駅"
-      ></b-form-input>
-      <b-button @click="pushTogo">データ登録</b-button>
-    </template>
-    <template v-else>
-      <p class="alert alert-secondary">ログインすれば利用可能</p>
-    </template>
+    <b-form-input
+      class="mb-2"
+      v-model="form.name"
+      placeholder="名称"
+    ></b-form-input>
+    <b-form-input
+      class="mb-2"
+      v-model="form.prefectures"
+      placeholder="都道府県"
+    ></b-form-input>
+    <b-form-input
+      class="mb-2"
+      v-model="form.station"
+      placeholder="最寄駅"
+    ></b-form-input>
+    <b-button @click="pushTogo">データ登録</b-button>
     <hr />
     <h2 class="heading">データ削除</h2>
     <template v-if="logined">
@@ -72,6 +67,7 @@ export default {
   data: function () {
     return {
       logined: false, // ログイン状態
+      // フォーム入力値
       form: {
         name: "",
         station: "",
