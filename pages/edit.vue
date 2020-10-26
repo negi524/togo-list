@@ -54,7 +54,6 @@ export default {
   },
   data: function () {
     return {
-      logined: false, // ログイン状態
       // フォーム入力値
       form: {
         name: "",
@@ -65,26 +64,30 @@ export default {
       deleteName: "",
     };
   },
+  created() {
+    // ログイン状態を確認し、設定する
+    this.$store.dispatch("user/fetchLoginState");
+  },
+  computed: {
+    /**
+     * ログイン状態を取得する
+     */
+    logined() {
+      return this.$store.state.user.login;
+    },
+  },
   methods: {
     /**
      * ログインする
      */
     login() {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      const self = this;
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(function (result) {
-          self.logined = true;
-        });
+      this.$store.dispatch("user/login");
     },
     /**
      * ログアウトする
      */
     logout() {
-      firebase.auth().signOut();
-      this.logined = false;
+      this.$store.dispatch("user/logout");
     },
     /**
      * togoリストに追加を行う
