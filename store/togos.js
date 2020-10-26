@@ -1,7 +1,7 @@
 import moment from "moment";
 
 export const state = () => ({
-  list: []
+  list: [],
 });
 
 // vuexの状態変更を行う
@@ -19,7 +19,7 @@ export const mutations = {
    */
   delete(state, payload) {
     state.list.splice(payload, 1);
-  }
+  },
 };
 
 // ミューテーションをコミットする
@@ -44,7 +44,7 @@ export const actions = {
           station: data[key].station,
           created: data[key].created,
           prefectures: data[key].prefectures,
-          done: data[key].done
+          done: data[key].done,
         });
       }
       ctx.commit("set", addData);
@@ -64,23 +64,22 @@ export const actions = {
       station: obj.station,
       prefectures: obj.prefectures,
       created: moment().format("YYYY-MM-DD"), // 今日の日付を生成する
-      done: false
+      done: false,
     };
-
-    const response = await this.$axios.put(url, param);
-    if (200 <= response.status && response.status < 300) {
+    try {
+      // firebaseに追加を行い、結果をVuexに詰める
+      const response = await this.$axios.put(url, param);
       const { data } = response;
-
       const newTogo = {
         name: key,
         station: data.station,
         created: data.created,
         prefectures: data.prefectures,
-        done: data.done
+        done: data.done,
       };
       ctx.commit("add", newTogo);
-    } else {
-      console.error("API request error.");
+    } catch (err) {
+      console.error("API request error." + err);
     }
   },
   /**
@@ -93,18 +92,17 @@ export const actions = {
     if (index >= ctx.state.list.length) {
       console.error("out of index");
     } else {
-      // firebase削除のキーとなる名前を取得する
-      const key = ctx.state.list[index].name;
+      try {
+        // firebase削除のキーとなる名前を取得する
+        const key = ctx.state.list[index].name;
 
-      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-      const response = await this.$axios.delete(url);
-
-      if (response.status == 200) {
+        const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+        const response = await this.$axios.delete(url);
         // Vuexから削除
         ctx.commit("delete", index);
         console.log("delete success.");
-      } else {
-        console.error("API request error.");
+      } catch (err) {
+        console.error("API request error." + err);
       }
     }
   },
@@ -129,15 +127,15 @@ export const actions = {
     if (!targetExists) {
       console.error("object is not exists.");
     } else {
-      const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-      const response = await this.$axios.delete(url);
-      if (response.status == 200) {
+      try {
+        const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
+        const response = await this.$axios.delete(url);
         // Vuexから削除
         ctx.commit("delete", index);
         console.log("delete success.");
-      } else {
-        console.error("API request error.");
+      } catch (err) {
+        console.error("API request error." + err);
       }
     }
-  }
+  },
 };
