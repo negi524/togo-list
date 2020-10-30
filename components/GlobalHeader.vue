@@ -32,6 +32,10 @@ export default {
       return this.$store.state.user.login ? "ログアウトする" : "ログインする";
     },
   },
+  created() {
+    // ログイン状態を確認し、設定する
+    this.$store.dispatch("user/fetchLoginState");
+  },
   methods: {
     /**
      * ログイン or ログアウトを行う
