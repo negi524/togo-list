@@ -92,8 +92,8 @@ export default {
     /**
      * togoリストに追加を行う
      */
-    pushTogo: function () {
-      this.$store.dispatch("togos/pushTogo", this.form);
+    async pushTogo() {
+      const added = await this.$store.dispatch("togos/pushTogo", this.form);
       // フォームの値をリセットする
       this.form.name = "";
       this.form.station = "";

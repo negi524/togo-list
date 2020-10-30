@@ -1,4 +1,5 @@
 import moment from "moment";
+import firebase from "@/plugins/firebase";
 
 export const state = () => ({
   list: [],
@@ -29,27 +30,26 @@ export const actions = {
    * @param {Object} ctx コンテキストオブジェクト
    */
   async fetchTogo(ctx) {
-    const url = process.env.FIREBASE_DB_URL + "/place_v3.json";
-    try {
-      const response = await this.$axios.get(url);
-      const { data } = response;
-      // 一旦配列にまとめてから、Vuexにセットする
-      let addData = [];
-
-      // 一番最上位のキーをnameとしてデータ形式を変更する
-      for (let key in data) {
-        addData.push({
-          name: key,
-          station: data[key].station,
-          created: data[key].created,
-          prefectures: data[key].prefectures,
-          done: data[key].done,
-        });
-      }
-      ctx.commit("set", addData);
-    } catch {
-      console.error("get request error!");
-    }
+    const db = firebase.database();
+    db.ref("place_v3")
+      .orderByKey()
+      .on("value", (snapshot) => {
+        // firebaseのデータに変更があったとき呼ばれる
+        let data = snapshot.val();
+        let addData = []; // 配列に変換後、Vuexにセットする
+        // 一番最上位のキーをnameとしてデータ形式を変更する
+        for (let key in data) {
+          addData.push({
+            name: key,
+            station: data[key].station,
+            created: data[key].created,
+            prefectures: data[key].prefectures,
+            done: data[key].done,
+          });
+        }
+        console.debug("get data from firebase");
+        ctx.commit("set", addData);
+      });
   },
   /**
    * Firebaseにobjの追加を行い、成功した場合Vuexにも追加を行う
@@ -57,28 +57,26 @@ export const actions = {
    * @param {Object} obj: フォームから渡されるオブジェクト
    */
   async pushTogo(ctx, obj) {
-    const key = obj.name; // 名前をキーとしてfirebaseに登録する
-    const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-    let param = {
+    // 追加対象のデータ
+    const target = {
       station: obj.station,
       prefectures: obj.prefectures,
       created: moment().format("YYYY-MM-DD"), // 今日の日付を生成する
       done: false,
     };
+    const key = obj.name; // 名前をキーとしてfirebaseに登録する
+
     try {
       // firebaseに追加を行い、結果をVuexに詰める
-      const response = await this.$axios.put(url, param);
-      const { data } = response;
-      const newTogo = {
-        name: key,
-        station: data.station,
-        created: data.created,
-        prefectures: data.prefectures,
-        done: data.done,
-      };
-      ctx.commit("add", newTogo);
+      await firebase
+        .database()
+        .ref("place_v3/" + key)
+        .set(target);
+      console.debug("add data to firebase");
+      return true;
     } catch (err) {
-      console.error("API request error." + err);
+      console.error("Firebase API request error: " + err);
+      return false;
     }
   },
   /**
