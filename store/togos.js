@@ -30,9 +30,8 @@ export const actions = {
    */
   async fetchTogo(ctx) {
     const url = process.env.FIREBASE_DB_URL + "/place_v3.json";
-    const response = await this.$axios.get(url);
-
-    if (response.status == 200) {
+    try {
+      const response = await this.$axios.get(url);
       const { data } = response;
       // 一旦配列にまとめてから、Vuexにセットする
       let addData = [];
@@ -48,7 +47,7 @@ export const actions = {
         });
       }
       ctx.commit("set", addData);
-    } else {
+    } catch {
       console.error("get request error!");
     }
   },
