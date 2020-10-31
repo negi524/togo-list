@@ -31,25 +31,30 @@ export const actions = {
    */
   async fetchTogo(ctx) {
     const db = firebase.database();
-    db.ref("place_v3")
-      .orderByKey()
-      .on("value", (snapshot) => {
-        // firebaseのデータに変更があったとき呼ばれる
-        let data = snapshot.val();
-        let addData = []; // 配列に変換後、Vuexにセットする
-        // 一番最上位のキーをnameとしてデータ形式を変更する
-        for (let key in data) {
-          addData.push({
-            name: key,
-            station: data[key].station,
-            created: data[key].created,
-            prefectures: data[key].prefectures,
-            done: data[key].done,
-          });
-        }
-        console.debug("get data from firebase");
-        ctx.commit("set", addData);
-      });
+    try {
+      await db
+        .ref("place_v3")
+        .orderByKey()
+        .on("value", (snapshot) => {
+          // firebaseのデータに変更があったとき呼ばれる
+          let data = snapshot.val();
+          let addData = []; // 配列に変換後、Vuexにセットする
+          // 一番最上位のキーをnameとしてデータ形式を変更する
+          for (let key in data) {
+            addData.push({
+              name: key,
+              station: data[key].station,
+              created: data[key].created,
+              prefectures: data[key].prefectures,
+              done: data[key].done,
+            });
+          }
+          console.debug("get data from firebase");
+          ctx.commit("set", addData);
+        });
+    } catch (err) {
+      console.error("Firebase API request error: " + err);
+    }
   },
   /**
    * Firebaseにobjの追加を行い、成功した場合Vuexにも追加を行う
