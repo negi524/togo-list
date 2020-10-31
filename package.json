@@ -20,11 +20,11 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.18.1",
     "cross-env": "^5.2.0",
-    "element-ui": "^2.13.2",
     "express": "^4.16.4",
     "firebase": "^7.24.0",
     "knex": "^0.19.5",
     "nuxt": "^2.14.7",
+    "regenerator-runtime": "^0.13.7",
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
