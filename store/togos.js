@@ -98,11 +98,11 @@ export const actions = {
         // firebase削除のキーとなる名前を取得する
         const key = ctx.state.list[index].name;
 
-        const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-        const response = await this.$axios.delete(url);
-        // Vuexから削除
-        ctx.commit("delete", index);
-        console.log("delete success.");
+        await firebase
+          .database()
+          .ref("place_v3/" + key)
+          .remove();
+        console.debug("delete success.");
       } catch (err) {
         console.error("API request error." + err);
       }
@@ -128,15 +128,18 @@ export const actions = {
 
     if (!targetExists) {
       console.error("object is not exists.");
+      return false;
     } else {
       try {
-        const url = process.env.FIREBASE_DB_URL + "/place_v3/" + key + ".json";
-        const response = await this.$axios.delete(url);
-        // Vuexから削除
-        ctx.commit("delete", index);
-        console.log("delete success.");
+        await firebase
+          .database()
+          .ref("place_v3/" + key)
+          .remove();
+        console.debug("delete success.");
+        return true;
       } catch (err) {
         console.error("API request error." + err);
+        return false;
       }
     }
   },
