@@ -11,16 +11,22 @@ const TogoCard = () => import("@/components/TogoCard.vue");
 
 export default {
   components: {
-    TogoCard
+    TogoCard,
   },
-  async fetch({ store, params }) {
-    await store.dispatch("togos/fetchTogo");
+  // サーバーサイドで取得する場合
+  // async fetch({ store, params }) {
+  //   await store.dispatch("togos/fetchTogo");
+  // },
+  async created() {
+    // TODO: firebaseのon("value", ...) により、同期的に取れなかったため、
+    // 非同期で取得するように変更
+    this.$store.dispatch("togos/fetchTogo");
   },
   computed: {
     togos: function() {
       return this.$store.state.togos.list;
-    }
-  }
+    },
+  },
 };
 </script>
 
